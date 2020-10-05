@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  se-server:
+    build: .
+    container_name: se-ds-docker
+    restart: unless-stopped
+    volumes:
+      # - /appdata/space-engineers/World:/appdata/space-engineers/World
+      - /appdata/space-engineers/instances:/appdata/space-engineers/instances
+      - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
+      - /appdata/space-engineers/steamcmd:/root/.steam
+    ports:
+      - target: 8080
+        published: 18080
+        protocol: tcp
+        mode: host
+      - target: 27016
+        published: 27016
+        protocol: udp
+        mode: host
+    environment: 
+      - WINEDEBUG=-all 
+      # - WINEDEBUG=+all 
+      # - WINEDEBUG=warn+heap
+      - GAME_DIR=/appdata/space-engineers/SpaceEngineersDedicated
+      - GAME_SAVE=Z:\\appdata\\space-engineers\\instances\\TestInstance
