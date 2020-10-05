@@ -55,7 +55,10 @@ services:
 ```
 
 # Build the image yourself from source
-Download this repository and run `docker-compile up -d`
+Download this repository and run `docker-compose up -d`
+
+# Use the docker image as source for your own image
+If you want to extend the image create a `Dockerfile` and use `FROM devidian/spaceengineers`
 
 # FAQ
 ## Can i run mods?
