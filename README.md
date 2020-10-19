@@ -24,6 +24,8 @@ After you have saved your world upload it (the instance directory) to your docke
 ## Using docker-compose with premade docker image
 Create a `docker-compose.yml` (see example below) and execute `docker-compose up -d`
 
+Do not forget to rename `TestInstance` with your instance name!
+
 ### example composer file (just copy and adjust)
 ```yaml
 version: '3.8'
@@ -31,9 +33,12 @@ version: '3.8'
 services:
   se-server:
     image: devidian/spaceengineers
+    # if you want to run multiple servers you will have to change container_name and published ports
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
+      # left side: your docker-host machine
+      # right side: the paths in the image (!!do not change!!)
       - /appdata/space-engineers/instances:/appdata/space-engineers/instances
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
@@ -48,10 +53,8 @@ services:
         mode: host
     environment: 
       - WINEDEBUG=-all 
-      # - WINEDEBUG=+all 
-      # - WINEDEBUG=warn+heap
-      - GAME_DIR=/appdata/space-engineers/SpaceEngineersDedicated
-      - GAME_SAVE=Z:\\appdata\\space-engineers\\instances\\TestInstance
+      # change TestInstance to your instance name
+      - INSTANCE_NAME=TestInstance
 ```
 
 # Build the image yourself from source
