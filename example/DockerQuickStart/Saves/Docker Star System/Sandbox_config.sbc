@@ -143,6 +143,10 @@
       <Name>2211605465.sbm</Name>
       <PublishedFileId>2211605465</PublishedFileId>
     </ModItem>
+    <ModItem FriendlyName="[Discontinued]Pipe Conveyor Expansion">
+      <Name>730332125.sbm</Name>
+      <PublishedFileId>730332125</PublishedFileId>
+    </ModItem>
     <ModItem FriendlyName="[Discontinued]Tubular Tanks">
       <Name>748953191.sbm</Name>
       <PublishedFileId>748953191</PublishedFileId>
@@ -150,10 +154,6 @@
     <ModItem FriendlyName="[Discontinued]Tubular Storage">
       <Name>758241739.sbm</Name>
       <PublishedFileId>758241739</PublishedFileId>
-    </ModItem>
-    <ModItem FriendlyName="[Discontinued]Pipe Conveyor Expansion">
-      <Name>730332125.sbm</Name>
-      <PublishedFileId>730332125</PublishedFileId>
     </ModItem>
     <ModItem FriendlyName="[Discontinued]Maintenance Tunnels">
       <Name>1087423713.sbm</Name>
@@ -207,10 +207,10 @@
       <Name>1890640537.sbm</Name>
       <PublishedFileId>1890640537</PublishedFileId>
     </ModItem>
-    <ModItem FriendlyName="EWE-Plugin Armor Ramps &amp; Panels">
+    <!-- <ModItem FriendlyName="EWE-Plugin Armor Ramps &amp; Panels">
       <Name>1875545891.sbm</Name>
       <PublishedFileId>1875545891</PublishedFileId>
-    </ModItem>
+    </ModItem> -->
     <ModItem FriendlyName="Stargate ore Fix for EWE">
       <Name>1977695087.sbm</Name>
       <PublishedFileId>1977695087</PublishedFileId>
