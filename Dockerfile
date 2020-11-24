@@ -44,10 +44,10 @@ RUN dpkg --add-architecture i386 && \
       steamcmd \
       xvfb \
       cabextract && \
-    mv /root/winetricks.sh /usr/local/bin/winetricks && \
+    mv /tmp/winetricks.sh /usr/local/bin/winetricks && \
     chmod +x /usr/local/bin/winetricks && \
     env WINEDLLOVERRIDES="mscoree=d" wineboot --init /nogui && \
-    /usr/local/bin/winetricks && \
+    /root/winetricks.sh && \
     DEBIAN_FRONTEND=noninteractive apt-get -qq clean autoclean && \
     DEBIAN_FRONTEND=noninteractive apt-get autoremove -qq -y && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/ && \
@@ -56,6 +56,6 @@ RUN dpkg --add-architecture i386 && \
       wine-staging-amd64=5.9~buster \
       wine-staging=5.9~buster \
       winehq-staging=5.9~buster && \
-    /usr/local/bin/winetricks --force -q dotnet48
+    /root/winetricks.sh --force -q dotnet48
 
 ENTRYPOINT /root/entrypoint.sh
