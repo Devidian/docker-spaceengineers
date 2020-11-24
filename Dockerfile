@@ -45,7 +45,7 @@ RUN dpkg --add-architecture i386 && \
       steamcmd \
       xvfb \
       cabextract && \
-    mv /tmp/winetricks /usr/local/bin/ && \
+    mv /root/winetricks /usr/local/bin/ && \
     chmod +x /usr/local/bin/winetricks && \
     env WINEDLLOVERRIDES="mscoree=d" wineboot --init /nogui && \
     bash winetricks.sh && \
