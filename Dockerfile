@@ -1,72 +1,64 @@
-# ============== build stage ==================
-FROM debian as builder
+FROM debian:buster-20201117
 
 WORKDIR /root
 
-# Add i386 architecture support
-RUN dpkg --add-architecture i386
-# Install software properties common
-# Install wget
-RUN apt update && \
-    apt install --yes software-properties-common wget gnupg
-#Add non-free repo for steamcmd
-RUN apt-add-repository non-free
+COPY winetricks.sh entrypoint.sh /root/
 
-# Wine ands stuff
-RUN wget -nc https://dl.winehq.org/wine-builds/winehq.key && \
-    apt-key add winehq.key
-RUN wget -nc https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key && \
-    apt-key add Release.key
-
-RUN apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ buster main" && \
-    apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" && \
-    apt update
-
-# Steam config setup
-RUN echo steam steam/question select "I AGREE" | debconf-set-selections && \
-    echo steam steam/license note '' | debconf-set-selections 
-    # && \
-    # echo postfix postfix/mailname string 'your.hostname.com' | debconf-set-selections && \
-    # echo postfix postfix/main_mailer_type string 'Internet Site'| debconf-set-selections
-
-
-# Install packages
-RUN apt install --yes \
-    libfaudio0:i386 \
-    libfaudio0 && \
-    apt install --yes --install-recommends \
-    winehq-staging \
-    steamcmd
-
-RUN apt install --yes xvfb cabextract
-
-# Install winetricks
-RUN wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
-    mv winetricks /usr/local/bin/ && \
-    chmod +x /usr/local/bin/winetricks
-
-# Wine Setup
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
 ENV WINEPREFIX=/root/server
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
-RUN env WINEDLLOVERRIDES="mscoree=d" wineboot --init /nogui
-
-COPY winetricks.sh .
-
-RUN bash winetricks.sh
-
-RUN apt-get clean autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/
-
+# Add i386 architecture support
+# Add non-free repo for steamcmd
+# Install wine
+# Steam config setup
+# Wine Setup
 # downgrade wine to install dotnet48
-RUN apt install --yes --allow-downgrades --install-recommends \
-    wine-staging-i386=5.9~buster \
-    wine-staging-amd64=5.9~buster \
-    wine-staging=5.9~buster \
-    winehq-staging=5.9~buster
-
-RUN winetricks --force -q dotnet48
-
-COPY entrypoint.sh entrypoint.sh
+RUN dpkg --add-architecture i386 && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq -y update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq software-properties-common wget gnupg && \
+    apt-add-repository non-free && \
+    wget -P /tmp \
+      https://dl.winehq.org/wine-builds/winehq.key && \
+    apt-key add /tmp/winehq.key && \
+    rm -f /tmp/winehq.key && \
+    wget -P /tmp \
+      https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key && \
+    apt-key add /tmp/Release.key && \
+    rm -f /tmp/Release.key && \
+    apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ buster main" && \
+    apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" && \
+    DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
+    echo steam steam/question select "I AGREE" | debconf-set-selections && \
+    echo steam steam/license note '' | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
+      libfaudio0:i386 \
+      libfaudio0 && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --install-recommends \
+      winehq-staging \
+      steamcmd \
+      xvfb \
+      cabextract && \
+    wget -P /usr/local/bin \
+       https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
+    chmod +x /usr/local/bin/winetricks && \
+    env WINEDLLOVERRIDES="mscoree=d" wineboot --init /nogui && \
+    /root/winetricks.sh && \
+    rm -f /root/winetricks.sh && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --allow-downgrades --install-recommends \
+      wine-staging-i386=5.9~buster \
+      wine-staging-amd64=5.9~buster \
+      wine-staging=5.9~buster \
+      winehq-staging=5.9~buster && \
+    /usr/local/bin/winetricks --force -q dotnet48 && \
+    DEBIAN_FRONTEND=noninteractive apt-get remove -qq -y \
+      gnupg \
+      wget \
+      software-properties-common && \
+    DEBIAN_FRONTEND=noninteractive apt-get autoremove -qq -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq clean autoclean && \
+    rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ENTRYPOINT /root/entrypoint.sh
