@@ -143,9 +143,41 @@
       <Name>2211605465.sbm</Name>
       <PublishedFileId>2211605465</PublishedFileId>
     </ModItem>
-    <ModItem FriendlyName="[Discontinued]Pipe Conveyor Expansion">
-      <Name>730332125.sbm</Name>
-      <PublishedFileId>730332125</PublishedFileId>
+    <ModItem FriendlyName="WeaponCore - 1.6(6)">
+      <Name>1918681825.sbm</Name>
+      <PublishedFileId>1918681825</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="[Mexpex] MWI - Weapon Collection 2 [WeaponCore] (4)">
+      <Name>2082309225.sbm</Name>
+      <PublishedFileId>2082309225</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="VCZ Multifloor Elevator">
+      <Name>1154898843.sbm</Name>
+      <PublishedFileId>1154898843</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="Slope LCD Panels Mod Pack(DX11)">
+      <Name>1101616479.sbm</Name>
+      <PublishedFileId>1101616479</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="117 Elements Symbols LCD">
+      <Name>543586501.sbm</Name>
+      <PublishedFileId>543586501</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="LCD Signs Pack [UPDATED]">
+      <Name>1749684384.sbm</Name>
+      <PublishedFileId>1749684384</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="Button Panels Mod Pack DX-11(Updated)">
+      <Name>960597257.sbm</Name>
+      <PublishedFileId>960597257</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="(DX11) Iris Door">
+      <Name>821764014.sbm</Name>
+      <PublishedFileId>821764014</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="Armor Ramps &amp; Panels Mod Pack">
+      <Name>1481738859.sbm</Name>
+      <PublishedFileId>1481738859</PublishedFileId>
     </ModItem>
     <ModItem FriendlyName="[Discontinued]Tubular Tanks">
       <Name>748953191.sbm</Name>
@@ -154,6 +186,10 @@
     <ModItem FriendlyName="[Discontinued]Tubular Storage">
       <Name>758241739.sbm</Name>
       <PublishedFileId>758241739</PublishedFileId>
+    </ModItem>
+    <ModItem FriendlyName="[Discontinued]Pipe Conveyor Expansion">
+      <Name>730332125.sbm</Name>
+      <PublishedFileId>730332125</PublishedFileId>
     </ModItem>
     <ModItem FriendlyName="[Discontinued]Maintenance Tunnels">
       <Name>1087423713.sbm</Name>
@@ -171,10 +207,6 @@
       <Name>1441952717.sbm</Name>
       <PublishedFileId>1441952717</PublishedFileId>
     </ModItem>
-    <ModItem FriendlyName="Azimuth Complete Mega Mod Pack~(DX-11 Ready)(Unrealistic Version)">
-      <Name>819615704.sbm</Name>
-      <PublishedFileId>819615704</PublishedFileId>
-    </ModItem>
     <ModItem FriendlyName="Custom Jump Drives Mod Pack">
       <Name>479877208.sbm</Name>
       <PublishedFileId>479877208</PublishedFileId>
@@ -182,10 +214,6 @@
     <ModItem FriendlyName="Defense Shields - v1.91(3)">
       <Name>1365616918.sbm</Name>
       <PublishedFileId>1365616918</PublishedFileId>
-    </ModItem>
-    <ModItem FriendlyName="MWI - Weapon Collection 2 (9)">
-      <Name>1727383494.sbm</Name>
-      <PublishedFileId>1727383494</PublishedFileId>
     </ModItem>
     <ModItem FriendlyName="Dynamic Laser Compression Modular Thrusters">
       <Name>2161243333.sbm</Name>
@@ -207,10 +235,6 @@
       <Name>1890640537.sbm</Name>
       <PublishedFileId>1890640537</PublishedFileId>
     </ModItem>
-    <!-- <ModItem FriendlyName="EWE-Plugin Armor Ramps &amp; Panels">
-      <Name>1875545891.sbm</Name>
-      <PublishedFileId>1875545891</PublishedFileId>
-    </ModItem> -->
     <ModItem FriendlyName="Stargate ore Fix for EWE">
       <Name>1977695087.sbm</Name>
       <PublishedFileId>1977695087</PublishedFileId>
