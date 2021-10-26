@@ -67,6 +67,9 @@ If you want to extend the image create a `Dockerfile` and use `FROM devidian/spa
 ## Can i run mods?
 Yes as they are saved in your world, the server will download them on the first start.
 
+## Can i contribute?
+Sure, feel free to submit merge requests if you have anything to improve this project.
+
 # Known issues
 ## VRage Remote Client
 I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it)

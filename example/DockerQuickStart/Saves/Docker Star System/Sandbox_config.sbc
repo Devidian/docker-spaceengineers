@@ -2,13 +2,13 @@
 <MyObjectBuilder_WorldConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Settings xsi:type="MyObjectBuilder_SessionSettings">
     <GameMode>Survival</GameMode>
-    <InventorySizeMultiplier>15</InventorySizeMultiplier>
+    <InventorySizeMultiplier>3</InventorySizeMultiplier>
     <BlocksInventorySizeMultiplier>1</BlocksInventorySizeMultiplier>
-    <AssemblerSpeedMultiplier>10</AssemblerSpeedMultiplier>
-    <AssemblerEfficiencyMultiplier>1</AssemblerEfficiencyMultiplier>
-    <RefinerySpeedMultiplier>10</RefinerySpeedMultiplier>
+    <AssemblerSpeedMultiplier>3</AssemblerSpeedMultiplier>
+    <AssemblerEfficiencyMultiplier>3</AssemblerEfficiencyMultiplier>
+    <RefinerySpeedMultiplier>3</RefinerySpeedMultiplier>
     <OnlineMode>PUBLIC</OnlineMode>
-    <MaxPlayers>10</MaxPlayers>
+    <MaxPlayers>4</MaxPlayers>
     <MaxFloatingObjects>100</MaxFloatingObjects>
     <MaxBackupSaves>5</MaxBackupSaves>
     <MaxGridSize>0</MaxGridSize>
@@ -31,7 +31,7 @@
     <ResetOwnership>false</ResetOwnership>
     <WelderSpeedMultiplier>2</WelderSpeedMultiplier>
     <GrinderSpeedMultiplier>2</GrinderSpeedMultiplier>
-    <RealisticSound>true</RealisticSound>
+    <RealisticSound>false</RealisticSound>
     <HackSpeedMultiplier>0.33</HackSpeedMultiplier>
     <PermanentDeath>false</PermanentDeath>
     <AutoSaveInMinutes>5</AutoSaveInMinutes>
@@ -40,7 +40,7 @@
     <EnableContainerDrops>true</EnableContainerDrops>
     <SpawnShipTimeMultiplier>0</SpawnShipTimeMultiplier>
     <ProceduralDensity>0.35</ProceduralDensity>
-    <ProceduralSeed>1337</ProceduralSeed>
+    <ProceduralSeed>0</ProceduralSeed>
     <DestructibleBlocks>true</DestructibleBlocks>
     <EnableIngameScripts>false</EnableIngameScripts>
     <ViewDistance>15000</ViewDistance>
@@ -99,7 +99,7 @@
     <EnableResearch>true</EnableResearch>
     <EnableGoodBotHints>true</EnableGoodBotHints>
     <OptimalSpawnDistance>16000</OptimalSpawnDistance>
-    <EnableAutorespawn>false</EnableAutorespawn>
+    <EnableAutorespawn>true</EnableAutorespawn>
     <EnableBountyContracts>true</EnableBountyContracts>
     <EnableSupergridding>false</EnableSupergridding>
     <EnableEconomy>true</EnableEconomy>
@@ -117,6 +117,23 @@
     <EnablePcuTrading>true</EnablePcuTrading>
     <FamilySharing>true</FamilySharing>
     <EnableSelectivePhysicsUpdates>false</EnableSelectivePhysicsUpdates>
+    <PredefinedAsteroids>true</PredefinedAsteroids>
+    <UseConsolePCU>false</UseConsolePCU>
+    <MaxPlanets>99</MaxPlanets>
+    <OffensiveWordsFiltering>false</OffensiveWordsFiltering>
+    <AdjustableMaxVehicleSpeed>true</AdjustableMaxVehicleSpeed>
+    <EnableMatchComponent>false</EnableMatchComponent>
+    <PreMatchDuration>0</PreMatchDuration>
+    <MatchDuration>0</MatchDuration>
+    <PostMatchDuration>0</PostMatchDuration>
+    <EnableFriendlyFire>true</EnableFriendlyFire>
+    <EnableTeamBalancing>false</EnableTeamBalancing>
+    <CharacterSpeedMultiplier>1</CharacterSpeedMultiplier>
+    <EnableRecoil>true</EnableRecoil>
+    <EnvironmentDamageMultiplier>1</EnvironmentDamageMultiplier>
+    <EnableGamepadAimAssist>false</EnableGamepadAimAssist>
+    <BackpackDespawnTimer>5</BackpackDespawnTimer>
+    <EnableFactionPlayerNames>false</EnableFactionPlayerNames>
   </Settings>
   <Mods>
     <ModItem FriendlyName="Text HUD API">
