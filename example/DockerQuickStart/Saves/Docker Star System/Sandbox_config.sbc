@@ -27,7 +27,7 @@
     <CargoShipsEnabled>true</CargoShipsEnabled>
     <EnableSpectator>false</EnableSpectator>
     <WorldSizeKm>0</WorldSizeKm>
-    <RespawnShipDelete>false</RespawnShipDelete>
+    <RespawnShipDelete>true</RespawnShipDelete>
     <ResetOwnership>false</ResetOwnership>
     <WelderSpeedMultiplier>2</WelderSpeedMultiplier>
     <GrinderSpeedMultiplier>2</GrinderSpeedMultiplier>
@@ -116,7 +116,7 @@
     <SuppressedWarnings />
     <EnablePcuTrading>true</EnablePcuTrading>
     <FamilySharing>true</FamilySharing>
-    <EnableSelectivePhysicsUpdates>false</EnableSelectivePhysicsUpdates>
+    <EnableSelectivePhysicsUpdates>true</EnableSelectivePhysicsUpdates>
     <PredefinedAsteroids>true</PredefinedAsteroids>
     <UseConsolePCU>false</UseConsolePCU>
     <MaxPlanets>99</MaxPlanets>
@@ -132,7 +132,7 @@
     <EnableRecoil>true</EnableRecoil>
     <EnvironmentDamageMultiplier>1</EnvironmentDamageMultiplier>
     <EnableGamepadAimAssist>false</EnableGamepadAimAssist>
-    <BackpackDespawnTimer>5</BackpackDespawnTimer>
+    <BackpackDespawnTimer>10</BackpackDespawnTimer>
     <EnableFactionPlayerNames>false</EnableFactionPlayerNames>
   </Settings>
   <Mods>
