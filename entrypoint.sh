@@ -2,13 +2,13 @@
 # VARIABLES
 GAME_DIR="/appdata/space-engineers/SpaceEngineersDedicated"
 CONFIG_PATH="/appdata/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
-INSTANCE_IP="0.0.0.0"
+INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
-echo "-------------------------------START------------------------------"
+echo "-------------------------------INSTALL & UPDATE------------------------------"
 /usr/games/steamcmd +login anonymous +@sSteamCmdForcePlatformType windows +force_install_dir ${GAME_DIR} +app_update 298740 +quit
 
-## CONFIG UPDATES ##
-# update IP to 0.0.0.0
+echo "---------------------------------UPDATE CONFIG-------------------------------"
+# update IP to host external ip
 CURRENT_IP=$(grep -oEi '<IP>(.*)</IP>' ${CONFIG_PATH} | sed "s=<IP>==g" | sed "s=</IP>==g")
 sed -i "s=<IP>.*</IP>=<IP>${INSTANCE_IP}</IP>=g" ${CONFIG_PATH}
 
@@ -17,9 +17,18 @@ CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed
 SAVE_PATH="Z:\\\\appdata\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
 sed -i "s=<LoadWorld>.*</LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
 
+echo "-----------------------------CURRENT CONFIGURATION---------------------------"
+echo "GAME_DIR=$GAME_DIR"
+echo "CONFIG_PATH=$CONFIG_PATH"
+echo "INSTANCE_IP=$INSTANCE_IP"
+echo "CURRENT_IP=$CURRENT_IP"
+echo "CURRENT_WORLDNAME=$CURRENT_WORLDNAME"
+echo "SAVE_PATH=$SAVE_PATH"
 ## END UPDATES ##
 
+echo "----------------------------------START GAME---------------------------------"
 cd ${GAME_DIR}/DedicatedServer64/
 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME}
-echo "--------------------------------END-------------------------------"
+echo "-----------------------------------END GAME----------------------------------"
 sleep 10
+echo "-----------------------------------BYE !!!!----------------------------------"
