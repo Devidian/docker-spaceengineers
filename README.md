@@ -13,7 +13,7 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 | Key         | Value                |
 | ----------- | -------------------- |
 | OS          | Debian 11 (Bullseye) |
-| Wine        | 6 (staging)          |
+| Wine        | 6 (stable)           |
 | Docker size | ~4.6GB uncompressed  |
 
 # How to use
