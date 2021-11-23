@@ -1,4 +1,4 @@
-FROM debian:bullseye-20211011
+FROM debian:bullseye-slim
 
 WORKDIR /root
 
@@ -30,10 +30,10 @@ RUN \
     libfaudio0:i386 \
     libfaudio0 && \
   apt-get install -qq -y --install-recommends \
-    winehq-staging \
-    wine-staging-i386 \
-    wine-staging-amd64 \
-    wine-staging \
+    winehq-stable \
+    wine-stable-i386 \
+    wine-stable-amd64 \
+    wine-stable \
     steamcmd \
     xvfb \
     cabextract && \
