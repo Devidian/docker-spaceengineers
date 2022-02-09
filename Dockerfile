@@ -15,10 +15,10 @@ RUN \
   dpkg --add-architecture i386 && \
   apt-get -qq -y update && \
   apt-get upgrade -y -qq && \
-  apt-get install -y -qq software-properties-common wget gnupg && \
+  apt-get install -y -qq software-properties-common curl gnupg2 && \
   # add repository keys
-  wget -O- -q https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
-  wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | apt-key add - && \
+  curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
+  curl https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | apt-key add - && \
   # add repositories
   apt-add-repository non-free && \
   apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" && \
@@ -37,7 +37,7 @@ RUN \
     steamcmd \
     xvfb \
     cabextract && \
-  wget -P /usr/local/bin https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
+  curl -L https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks > /usr/local/bin/winetricks && \
   chmod +x /usr/local/bin/winetricks 
 
 # Winetricks (This block uses most of the build time)
@@ -47,8 +47,8 @@ RUN \
   rm -f /root/winetricks.sh && \
   # Remove stuff we do not need anymore to reduce docker size
   apt-get remove -qq -y \
-  gnupg \
-  wget \
+  gnupg2 \
+  curl \
   software-properties-common && \
   apt-get autoremove -qq -y && \
   apt-get -qq clean autoclean && \

@@ -5,7 +5,7 @@ CONFIG_PATH="/appdata/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-
 INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"
-/usr/games/steamcmd +login anonymous +@sSteamCmdForcePlatformType windows +force_install_dir ${GAME_DIR} +app_update 298740 +quit
+/usr/games/steamcmd +force_install_dir ${GAME_DIR} +login anonymous +@sSteamCmdForcePlatformType windows +app_update 298740 +quit
 
 echo "---------------------------------UPDATE CONFIG-------------------------------"
 # update IP to host external ip
@@ -25,7 +25,7 @@ echo "CURRENT_IP=$CURRENT_IP"
 echo "CURRENT_WORLDNAME=$CURRENT_WORLDNAME"
 echo "SAVE_PATH=$SAVE_PATH"
 ## END UPDATES ##
-
+wine --version
 echo "----------------------------------START GAME---------------------------------"
 cd ${GAME_DIR}/DedicatedServer64/
 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME}

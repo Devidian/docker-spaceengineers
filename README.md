@@ -13,8 +13,9 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 | Key         | Value                |
 | ----------- | -------------------- |
 | OS          | Debian 11 (Bullseye) |
-| Wine        | 6 (stable)           |
+| Wine        | 7.0 (stable)         |
 | Docker size | ~4.6GB uncompressed  |
+| Build Time  | ~ 410 seconds        |
 
 # How to use
 
