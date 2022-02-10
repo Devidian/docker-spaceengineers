@@ -28,12 +28,12 @@ RUN \
   echo steam steam/license note '' | debconf-set-selections && \
   apt-get install -qq -y \
     libfaudio0:i386 \
-    libfaudio0 && \
-  apt-get install -qq -y --install-recommends \
-    winehq-stable \
-    wine-stable-i386 \
-    wine-stable-amd64 \
-    wine-stable \
+    libfaudio0 
+RUN apt-get install -qq -y --install-recommends \
+    winehq-stable=6.0.2~bullseye-1 \
+    wine-stable-i386=6.0.2~bullseye-1 \
+    wine-stable-amd64=6.0.2~bullseye-1 \
+    wine-stable=6.0.2~bullseye-1 \
     steamcmd \
     xvfb \
     cabextract && \
