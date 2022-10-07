@@ -28,7 +28,7 @@ echo "SAVE_PATH=$SAVE_PATH"
 wine --version
 echo "----------------------------------START GAME---------------------------------"
 cd ${GAME_DIR}/DedicatedServer64/
-wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} > check.log & while ! grep "Error: No IP assigned" check.log >&/dev/null; do sleep 1; done; wineserver -k
+wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} > check.log & while ! grep "Error: No IP assigned" check.log >&/dev/null; do sleep 1; done; echo 'Killing'; wineserver -k9
 echo "-----------------------------------END GAME----------------------------------"
 sleep 1
 echo "-----------------------------------BYE !!!!----------------------------------"
