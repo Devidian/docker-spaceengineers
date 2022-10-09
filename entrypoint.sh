@@ -2,7 +2,8 @@
 # VARIABLES
 GAME_DIR="/appdata/space-engineers/SpaceEngineersDedicated"
 CONFIG_PATH="/appdata/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
-INSTANCE_IP=$(hostname -I | sed "s= ==g")
+if [ -z ${INSTANCE_IP+x} ]; then INSTANCE_IP=$(hostname -I | sed "s= ==g"); fi
+
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"
 /usr/games/steamcmd +force_install_dir ${GAME_DIR} +login anonymous +@sSteamCmdForcePlatformType windows +app_update 298740 +quit
@@ -27,8 +28,9 @@ echo "SAVE_PATH=$SAVE_PATH"
 ## END UPDATES ##
 wine --version
 echo "----------------------------------START GAME---------------------------------"
+rm /appdata/space-engineers/instances/${INSTANCE_NAME}/*.log
 cd ${GAME_DIR}/DedicatedServer64/
-wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} > check.log & while ! grep "Error: No IP assigned" check.log >&/dev/null; do sleep 1; done; echo 'Killing'; wineserver -k9
+wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} > check.log & while ! grep "Error: No IP assigned" check.log >&/dev/null; do sleep 1; done && echo 'Killing' && wineserver -k9 && exit 1
 echo "-----------------------------------END GAME----------------------------------"
 sleep 1
 echo "-----------------------------------BYE !!!!----------------------------------"
