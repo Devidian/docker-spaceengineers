@@ -55,5 +55,5 @@ RUN \
 
 COPY entrypoint.sh /root/
 COPY healthcheck.sh /root/
-HEALTHCHECK --interval=30s --timeout=30s --start-period=600s --retries=3 CMD [ "/root/healthcheck.sh" ]
+HEALTHCHECK --interval=60s --timeout=60s --start-period=600s --retries=3 CMD [ "/root/healthcheck.sh" ]
 ENTRYPOINT /root/entrypoint.sh

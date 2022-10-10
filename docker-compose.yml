@@ -20,5 +20,5 @@ services:
     environment: 
       - WINEDEBUG=-all
       - INSTANCE_NAME=SE
-      # - INSTANCE_IP=
-      # manually set instance ip if needed
+      - PUBLIC_IP=
+      # public ip required for healthcheck

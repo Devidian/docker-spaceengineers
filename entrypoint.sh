@@ -2,7 +2,7 @@
 # VARIABLES
 GAME_DIR="/appdata/space-engineers/SpaceEngineersDedicated"
 CONFIG_PATH="/appdata/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
-if [ -z ${INSTANCE_IP+x} ]; then INSTANCE_IP=$(hostname -I | sed "s= ==g"); fi
+INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"

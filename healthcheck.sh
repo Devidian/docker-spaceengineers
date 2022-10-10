@@ -1,6 +1,6 @@
 #!/bin/bash
-server=$(curl https://api.steampowered.com/ISteamApps/GetServersAtAddress/v1?addr=$INSTANCE_IP -qq)
-if echo $server | grep Space -q
+
+if curl https://api.steampowered.com/ISteamApps/GetServersAtAddress/v1?addr=${PUBLIC_IP} -qq | grep Space -q
 then
         exit 0
 else
