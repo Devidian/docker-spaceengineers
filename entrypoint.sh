@@ -30,7 +30,7 @@ wine --version
 echo "----------------------------------START GAME---------------------------------"
 rm /appdata/space-engineers/instances/${INSTANCE_NAME}/*.log
 cd ${GAME_DIR}/DedicatedServer64/
-wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} > check.log & while ! grep "Error: No IP assigned" check.log >&/dev/null; do sleep 1; done && echo 'Killing' && wineserver -k9 && exit 1
+wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME} | tee /root/server.log & while ! grep "Error: No IP assigned" /root/server.log >&/dev/null; do sleep 1; done && echo '----------------------------------KILLING: NO IP ASSIGNED---------------------------------' && wineserver -k9 && exit 1
 echo "-----------------------------------END GAME----------------------------------"
 sleep 1
 echo "-----------------------------------BYE !!!!----------------------------------"
