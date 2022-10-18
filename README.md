@@ -1,4 +1,4 @@
-# Space Engineers Dedicated Debian Docker Container (Healthcheck Fork)
+# Space Engineers Dedicated Debian Docker Container
 
 First of all thanks to [7thCore](https://github.com/7thCore) and [mmmaxwwwell](https://github.com/mmmaxwwwell) for their great prework making a linux dedicated server for Space Engineers real!
 
@@ -34,7 +34,7 @@ Do not forget to rename `TestInstance` with your instance name!
 ### example composer file (just copy and adjust)
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   se-server:
@@ -53,7 +53,7 @@ services:
         published: 27016
         protocol: udp
         mode: host
-    environment: 
+    environment:
       - WINEDEBUG=-all
       - INSTANCE_NAME=TestInstance
       - PUBLIC_IP=1.2.3.4
@@ -80,11 +80,12 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 
 # Credits
 
-| User                                               | repo                                                                  | what (s)he did for this project |
-| -------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------- |
-| [mmmaxwwwell](https://github.com/mmmaxwwwell)      | https://github.com/mmmaxwwwell/space-engineers-dedicated-docker-linux | downgrading for dotnet48        |
-| [7thCore](https://github.com/7thCore)              | https://github.com/7thCore/sesrv-script                               | installer bash script           |
-| [Diego Lucas Jimenez](https://github.com/tanisdlj) | -                                                                     | Improved Dockerfile             |
+| User                                                      | repo / fork                                                            | what (s)he did for this project |
+| --------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------- |
+| [mmmaxwwwell](https://github.com/mmmaxwwwell)             | https://github.com/mmmaxwwwell/space-engineers-dedicated-docker-linux  | downgrading for dotnet48        |
+| [7thCore](https://github.com/7thCore)                     | https://github.com/7thCore/sesrv-script                                | installer bash script           |
+| [Diego Lucas Jimenez](https://github.com/tanisdlj)        | -                                                                      | Improved Dockerfile             |
+| [EthicalObligation](https://github.com/EthicalObligation) | https://github.com/EthicalObligation/docker-spaceengineers-healthcheck | Healthcheck & Quicker startup   |
 
 # Known issues
 
