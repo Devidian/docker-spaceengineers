@@ -1,4 +1,4 @@
-# Space Engineers Dedicated Debian Docker Container
+# Space Engineers Dedicated Debian Docker Container (Healthcheck Fork)
 
 First of all thanks to [7thCore](https://github.com/7thCore) and [mmmaxwwwell](https://github.com/mmmaxwwwell) for their great prework making a linux dedicated server for Space Engineers real!
 
@@ -34,12 +34,12 @@ Do not forget to rename `TestInstance` with your instance name!
 ### example composer file (just copy and adjust)
 
 ```yaml
-version: "3.8"
+version: '3.8'
 
 services:
   se-server:
-    image: devidian/spaceengineers
-    # if you want to run multiple servers you will have to change container_name and published ports
+    build: .
+    image: spaceengineers:latest
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
@@ -49,18 +49,15 @@ services:
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
     ports:
-      - target: 8080
-        published: 18080
-        protocol: tcp
-        mode: host
       - target: 27016
         published: 27016
         protocol: udp
         mode: host
-    environment:
+    environment: 
       - WINEDEBUG=-all
-      # change TestInstance to your instance name
       - INSTANCE_NAME=TestInstance
+      - PUBLIC_IP=1.2.3.4
+      # public ip required for healthcheck
 ```
 
 # Build the image yourself from source
@@ -94,4 +91,4 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 - **VRage Remote Client**
   - I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it)
 - **Error: No IP assigned.**
-  - This is an issue in the official dedicated server files that can only be fixed by keen [see this issue](https://github.com/KeenSoftwareHouse/SpaceEngineers/issues/611)
+  - This is an issue in the official dedicated server files that can only be fixed by keen [see this issue](https://github.com/KeenSoftwareHouse/SpaceEngineers/issues/611) FOOTNOTE: I have added a check to kill it for quicker restart.

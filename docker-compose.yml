@@ -3,7 +3,7 @@ version: '3.8'
 services:
   se-server:
     build: .
-    image: devidian/spaceengineers:latest
+    image: spaceengineers:latest
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
@@ -13,14 +13,12 @@ services:
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
     ports:
-      - target: 8080
-        published: 18080
-        protocol: tcp
-        mode: host
       - target: 27016
         published: 27016
         protocol: udp
         mode: host
     environment: 
       - WINEDEBUG=-all
-      - INSTANCE_NAME=DockerQuickStart
+      - INSTANCE_NAME=SE
+      - PUBLIC_IP=1.2.3.4
+      # public ip required for healthcheck
