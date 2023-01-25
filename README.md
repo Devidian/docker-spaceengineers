@@ -4,11 +4,11 @@ First of all thanks to [7thCore](https://github.com/7thCore) and [mmmaxwwwell](h
 
 I took parts of their projects to create this one (see credits)
 
-# Why?
+## Why?
 
 I wanted to have a more cleaner docker container with less dependencies (integrate sesrv-script parts instead of wget the whole script) and a little more configuration through composer files.
 
-# KeyFacts
+## KeyFacts
 
 | Key         | Value                |
 | ----------- | -------------------- |
@@ -17,7 +17,7 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 | Docker size | ~4.6GB uncompressed  |
 | Build Time  | ~ 7-8 Minutes        |
 
-# How to use
+## How to use
 
 First you have to use the `Space Engineers Dedicated Server` Tool to setup your world.
 
@@ -25,21 +25,20 @@ First you have to use the `Space Engineers Dedicated Server` Tool to setup your 
 
 After you have saved your world upload it (the instance directory) to your docker host machine `/appdata/space-engineers/instances/`.
 
-## Using docker-compose with premade docker image
+## Using docker-compose with precompiled docker image (devidian/spaceengineers)
 
 Create a `docker-compose.yml` (see example below) and execute `docker-compose up -d`
 
 Do not forget to rename `TestInstance` with your instance name!
 
-### example composer file (just copy and adjust)
+### example composer - just copy and adjust
 
 ```yaml
 version: "3.8"
 
 services:
   se-server:
-    build: .
-    image: spaceengineers:latest
+    image: devidian/spaceengineers:latest
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
@@ -60,25 +59,25 @@ services:
       # public ip required for healthcheck
 ```
 
-# Build the image yourself from source
+## Build the image yourself from source
 
 Download this repository and run `docker-compose up -d`
 
-# Use the docker image as source for your own image
+## Use the docker image as source for your own image
 
 If you want to extend the image create a `Dockerfile` and use `FROM devidian/spaceengineers:latest`
 
-# FAQ
+## FAQ
 
-## Can i run mods?
+### Can i run mods?
 
 Yes as they are saved in your world, the server will download them on the first start.
 
-## Can i contribute?
+### Can i contribute?
 
 Sure, feel free to submit merge requests or issues if you have anything to improve this project. If you just have a question, use Github Discussions.
 
-# Credits
+## Credits
 
 | User                                                      | repo / fork                                                            | what (s)he did for this project |
 | --------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------- |
@@ -87,9 +86,11 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 | [Diego Lucas Jimenez](https://github.com/tanisdlj)        | -                                                                      | Improved Dockerfile             |
 | [EthicalObligation](https://github.com/EthicalObligation) | https://github.com/EthicalObligation/docker-spaceengineers-healthcheck | Healthcheck & Quicker startup   |
 
-# Known issues
+## Known issues
 
 - **VRage Remote Client**
   - I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it)
 - **Error: No IP assigned.**
-  - This is an issue in the official dedicated server files that can only be fixed by keen [see this issue](https://github.com/KeenSoftwareHouse/SpaceEngineers/issues/611) FOOTNOTE: I have added a check to kill it for quicker restart.
+  - This is an issue in the official dedicated server files that can only be fixed by keen [see this issue](https://github.com/KeenSoftwareHouse/SpaceEngineers/issues/611) FOOTNOTE: I have added a check to kill it for quicker restart. MIGHT BE RESOLVED SINCE WINE7
+- **No Mod download**
+  - Currently (01/2023) its not possible to download mods, all workarounds did not work so far

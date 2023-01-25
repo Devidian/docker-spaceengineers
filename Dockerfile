@@ -5,6 +5,7 @@ WORKDIR /root
 # ARG only available during build
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
+ARG WINEVERSION=8.0.0.0~bullseye-1
 
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
@@ -17,10 +18,12 @@ RUN \
   apt-get upgrade -y -qq && \
   apt-get install -y -qq software-properties-common curl gnupg2 && \
   # add repository keys
+  # TODO switch to gpg curl https://??? | tee /usr/share/keyrings/winehq.gpg
   curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
   curl https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | apt-key add - && \
   # add repositories
   apt-add-repository non-free && \
+  # TODO add when using gpg:  "deb [signed-by=/usr/share/keyrings/winehq.gpg] ..."
   apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" && \
   apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./" && \
   apt-get update -qq && \
@@ -30,10 +33,10 @@ RUN \
     libfaudio0:i386 \
     libfaudio0 
 RUN apt-get install -qq -y --install-recommends \
-    winehq-stable=6.0.2~bullseye-1 \
-    wine-stable-i386=6.0.2~bullseye-1 \
-    wine-stable-amd64=6.0.2~bullseye-1 \
-    wine-stable=6.0.2~bullseye-1 \
+    winehq-stable=${WINEVERSION} \
+    wine-stable-i386=${WINEVERSION} \
+    wine-stable-amd64=${WINEVERSION} \
+    wine-stable=${WINEVERSION} \
     steamcmd \
     xvfb \
     cabextract && \

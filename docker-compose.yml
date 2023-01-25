@@ -20,5 +20,5 @@ services:
     environment: 
       - WINEDEBUG=-all
       - INSTANCE_NAME=SE
-      - PUBLIC_IP=1.2.3.4
+      - PUBLIC_IP=127.0.0.1
       # public ip required for healthcheck
