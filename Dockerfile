@@ -5,6 +5,7 @@ WORKDIR /root
 # ARG only available during build
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
+ARG WINEBRANCH=stable
 ARG WINEVERSION=8.0.0.0~bullseye-1
 
 ENV WINEARCH=win64
@@ -25,21 +26,23 @@ RUN \
   apt-add-repository non-free && \
   # TODO add when using gpg:  "deb [signed-by=/usr/share/keyrings/winehq.gpg] ..."
   apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" && \
-  apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./" && \
+  apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./"
+RUN \
   apt-get update -qq && \
   echo steam steam/question select "I AGREE" | debconf-set-selections && \
   echo steam steam/license note '' | debconf-set-selections && \
   apt-get install -qq -y \
-    libfaudio0:i386 \
-    libfaudio0 
-RUN apt-get install -qq -y --install-recommends \
-    winehq-stable=${WINEVERSION} \
-    wine-stable-i386=${WINEVERSION} \
-    wine-stable-amd64=${WINEVERSION} \
-    wine-stable=${WINEVERSION} \
-    steamcmd \
-    xvfb \
-    cabextract && \
+  libfaudio0:i386 \
+  libfaudio0 
+RUN \ 
+  apt-get install -qq -y --install-recommends \
+  winehq-${WINEBRANCH}=${WINEVERSION} \
+  wine-${WINEBRANCH}-i386=${WINEVERSION} \
+  wine-${WINEBRANCH}-amd64=${WINEVERSION} \
+  wine-${WINEBRANCH}=${WINEVERSION} \
+  steamcmd \
+  xvfb \
+  cabextract && \
   curl -L https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks > /usr/local/bin/winetricks && \
   chmod +x /usr/local/bin/winetricks 
 
