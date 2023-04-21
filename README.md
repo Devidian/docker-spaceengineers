@@ -10,11 +10,11 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 
 ## KeyFacts
 
-| Key         | Value                |
+| Key         | :latest              |
 | ----------- | -------------------- |
 | OS          | Debian 11 (Bullseye) |
 | Wine        | 8.0.0.0~bullseye-1   |
-| Docker size | ~4.6GB uncompressed  |
+| Docker size | ~1.73GB compressed   |
 | Build Time  | ~ 7-8 Minutes        |
 
 ## How to use
@@ -90,7 +90,3 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 
 - **VRage Remote Client**
   - I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it)
-- **Error: No IP assigned.**
-  - This is an issue in the official dedicated server files that can only be fixed by keen [see this issue](https://github.com/KeenSoftwareHouse/SpaceEngineers/issues/611) FOOTNOTE: I have added a check to kill it for quicker restart. MIGHT BE RESOLVED SINCE WINE7
-- **No Mod download**
-  - Currently (01/2023) its not possible to download mods, all workarounds did not work so far
