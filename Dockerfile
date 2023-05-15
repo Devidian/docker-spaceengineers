@@ -6,7 +6,7 @@ WORKDIR /root
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
 ARG WINEBRANCH=staging
-ARG WINEVERSION=8.6~bullseye-1
+ARG WINEVERSION=8.8~bullseye-1
 
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
