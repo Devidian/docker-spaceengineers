@@ -1,7 +1,9 @@
 #!/bin/bash
 # VARIABLES
 GAME_DIR="/appdata/space-engineers/SpaceEngineersDedicated"
-CONFIG_PATH="/appdata/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
+INSTANCES_DIR="/appdata/space-engineers/instances"
+PLUGIN_DIR="/appdata/space-engineers/plugins"
+CONFIG_PATH="${INSTANCES_DIR}/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
 INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
 
@@ -18,6 +20,20 @@ CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed
 SAVE_PATH="Z:\\\\appdata\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
 sed -i "s=<LoadWorld>.*</LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
 
+echo "---------------------------------UPDATE PLUGINS------------------------------"
+PLUGIN_COUNT=$(ls -1 ${PLUGIN_DIR}/*.dll | wc -l)
+echo "Found ${PLUGIN_COUNT} plugins in ${PLUGIN_DIR}"
+
+if [ "${PLUGIN_COUNT}" -gt "0" ]; then 
+  PLUGINS_STRING="<Plugins>$(ls -1 /appdata/space-engineers/plugins/*.dll |\
+  sed -E "s=(.+\.dll)=<string>\1<string>=g" |\
+  tr -d "\n" )</Plugins>"
+else
+  PLUGINS_STRING="<Plugins />"
+fi
+
+sed -E -i "s=<Plugins />|<Plugins.*Plugins>=${PLUGINS_STRING}=g" ${CONFIG_PATH}
+
 echo "-----------------------------CURRENT CONFIGURATION---------------------------"
 echo "GAME_DIR=$GAME_DIR"
 echo "CONFIG_PATH=$CONFIG_PATH"
@@ -28,11 +44,9 @@ echo "SAVE_PATH=$SAVE_PATH"
 ## END UPDATES ##
 wine --version
 echo "----------------------------------START GAME---------------------------------"
-rm /appdata/space-engineers/instances/${INSTANCE_NAME}/*.log
+rm ${INSTANCES_DIR}/${INSTANCE_NAME}/*.log
 cd ${GAME_DIR}/DedicatedServer64/
 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\appdata\\space-engineers\\instances\\${INSTANCE_NAME}
-# No Ip assigned did not occure since wine 8, so next line is deprecated and might be removed later.
-# | tee /root/server.log & while ! grep "Error: No IP assigned" /root/server.log >&/dev/null; do sleep 1; done && echo '----------------------------------KILLING: NO IP ASSIGNED---------------------------------' && wineserver -k9 && exit 1
 echo "-----------------------------------END GAME----------------------------------"
 sleep 1
 echo "-----------------------------------BYE !!!!----------------------------------"

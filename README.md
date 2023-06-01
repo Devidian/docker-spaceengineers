@@ -13,7 +13,7 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 | Key         | :latest              | :winestaging         |
 | ----------- | -------------------- | -------------------- |
 | OS          | Debian 11 (Bullseye) | Debian 11 (Bullseye) |
-| Wine        | 8.0.0.0~bullseye-1   | 8.8~bullseye-1       |
+| Wine        | 8.0.0.0~bullseye-1   | 8.9~bullseye-1       |
 | Docker size | ~1.73GB compressed   | ~1.77GB compressed   |
 | Build Time  | ~ 7-8 Minutes        |                      |
 
@@ -27,7 +27,7 @@ After you have saved your world upload it (the instance directory) to your docke
 
 ## Using docker-compose with precompiled docker image (devidian/spaceengineers)
 
-Create a `docker-compose.yml` (see example below) and execute `docker-compose up -d`
+Create a [docker-compose.yml](docker-compose.yml) (see example below) and execute `docker-compose up -d`
 
 Do not forget to rename `TestInstance` with your instance name!
 
@@ -38,12 +38,13 @@ version: "3.8"
 
 services:
   se-server:
-    image: devidian/spaceengineers:latest
+    image: devidian/spaceengineers:winestaging
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
       # left side: your docker-host machine
       # right side: the paths in the image (!!do not change!!)
+      - /appdata/space-engineers/plugins:/appdata/space-engineers/plugins
       - /appdata/space-engineers/instances:/appdata/space-engineers/instances
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
@@ -68,6 +69,10 @@ Download this repository and run `docker-compose up -d`
 If you want to extend the image create a `Dockerfile` and use `FROM devidian/spaceengineers:latest`
 
 ## FAQ
+
+### Can i use plugins?
+
+Yes just copy plugins to `/appdata/space-engineers/plugins` and they will be added or removed by the [entrypoint.sh](entrypoint.sh) script
 
 ### Can i run mods?
 

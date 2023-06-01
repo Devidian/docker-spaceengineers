@@ -9,6 +9,7 @@ services:
     volumes:
       # left side: your docker-host machine
       # right side: the paths in the image (!!do not change!!)
+      - /appdata/space-engineers/plugins:/appdata/space-engineers/plugins
       - /appdata/space-engineers/instances:/appdata/space-engineers/instances
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
