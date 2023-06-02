@@ -12,13 +12,13 @@ echo "-------------------------------INSTALL & UPDATE---------------------------
 
 echo "---------------------------------UPDATE CONFIG-------------------------------"
 # update IP to host external ip
-CURRENT_IP=$(grep -oEi '<IP>(.*)</IP>' ${CONFIG_PATH} | sed "s=<IP>==g" | sed "s=</IP>==g")
+CURRENT_IP=$(grep -oEi '<IP>(.*)</IP>' ${CONFIG_PATH} | sed -E "s=<IP>|</IP>==g")
 sed -i "s=<IP>.*</IP>=<IP>${INSTANCE_IP}</IP>=g" ${CONFIG_PATH}
 
 # update world save path
-CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed "s=<WorldName>==g" | sed "s=</WorldName>==g")
+CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed -E "s=<WorldName>|</WorldName>==g")
 SAVE_PATH="Z:\\\\appdata\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
-sed -i "s=<LoadWorld>.*</LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
+sed -E -i "s=<LoadWorld />|<LoadWorld.*LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
 
 echo "---------------------------------UPDATE PLUGINS------------------------------"
 PLUGIN_COUNT=$(ls -1 ${PLUGIN_DIR}/*.dll | wc -l)
@@ -26,7 +26,7 @@ echo "Found ${PLUGIN_COUNT} plugins in ${PLUGIN_DIR}"
 
 if [ "${PLUGIN_COUNT}" -gt "0" ]; then 
   PLUGINS_STRING="<Plugins>$(ls -1 /appdata/space-engineers/plugins/*.dll |\
-  sed -E "s=(.+\.dll)=<string>\1<string>=g" |\
+  sed -E "s=(.+\.dll)=<string>\1</string>=g" |\
   tr -d "\n" )</Plugins>"
 else
   PLUGINS_STRING="<Plugins />"

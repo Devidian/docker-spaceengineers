@@ -90,6 +90,7 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 | [7thCore](https://github.com/7thCore)                     | https://github.com/7thCore/sesrv-script                                | installer bash script           |
 | [Diego Lucas Jimenez](https://github.com/tanisdlj)        | -                                                                      | Improved Dockerfile             |
 | [EthicalObligation](https://github.com/EthicalObligation) | https://github.com/EthicalObligation/docker-spaceengineers-healthcheck | Healthcheck & Quicker startup   |
+| [draconb](https://github.com/draconb)                     | -                                                                      | Hints for plugin support        |
 
 ## Known issues
 
