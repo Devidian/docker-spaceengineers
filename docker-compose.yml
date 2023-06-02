@@ -9,6 +9,7 @@ services:
     volumes:
       # left side: your docker-host machine
       # right side: the paths in the image (!!do not change!!)
+      - /appdata/space-engineers/plugins:/appdata/space-engineers/plugins
       - /appdata/space-engineers/instances:/appdata/space-engineers/instances
       - /appdata/space-engineers/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated
       - /appdata/space-engineers/steamcmd:/root/.steam
@@ -16,6 +17,10 @@ services:
       - target: 27016
         published: 27016
         protocol: udp
+        mode: host
+      - target: 8080
+        published: 18080
+        protocol: tcp
         mode: host
     environment: 
       - WINEDEBUG=-all
