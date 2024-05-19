@@ -12,10 +12,10 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 
 | Key         | :latest              | :winestaging         |
 | ----------- | -------------------- | -------------------- |
-| OS          | Debian 11 (Bullseye) | Debian 11 (Bullseye) |
-| Wine        | 8.0.0.0~bullseye-1   | 8.9~bullseye-1       |
+| OS          | Debian 11 (Bullseye) | Debian 12 (Bookworm) |
+| Wine        | 8.0.0.0~bullseye-1   | 9.9~bookworm-1       |
 | Docker size | ~1.73GB compressed   | ~1.77GB compressed   |
-| Build Time  | ~ 7-8 Minutes        |                      |
+| Build Time  | ~ 7-8 Minutes        | ~ 19 Minutes         |
 
 ## How to use
 
@@ -34,8 +34,6 @@ Do not forget to rename `TestInstance` with your instance name!
 ### example composer - just copy and adjust
 
 ```yaml
-version: "3.8"
-
 services:
   se-server:
     image: devidian/spaceengineers:winestaging
