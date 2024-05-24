@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-20240513-slim
 
 WORKDIR /root
 
@@ -6,7 +6,7 @@ WORKDIR /root
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
 ARG WINEBRANCH=stable
-ARG WINEVERSION=8.0.0.0~bullseye-1
+ARG WINEVERSION=9.9~bookworm-1
 
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
@@ -17,16 +17,13 @@ RUN \
   dpkg --add-architecture i386 && \
   apt-get -qq -y update && \
   apt-get upgrade -y -qq && \
-  apt-get install -y -qq software-properties-common curl gnupg2 && \
+  apt-get install -y -qq software-properties-common curl gnupg2 wget && \
   # add repository keys
-  # TODO switch to gpg curl https://??? | tee /usr/share/keyrings/winehq.gpg
-  curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
-  curl https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | apt-key add - && \
+  mkdir -pm755 /etc/apt/keyrings && \
+  wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && \
   # add repositories
-  apt-add-repository non-free && \
-  # TODO add when using gpg:  "deb [signed-by=/usr/share/keyrings/winehq.gpg] ..."
-  apt-add-repository "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" && \
-  apt-add-repository "deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./"
+  echo "deb http://ftp.us.debian.org/debian bookworm main non-free" > /etc/apt/sources.list.d/non-free.list && \
+  wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 RUN \
   apt-get update -qq && \
   echo steam steam/question select "I AGREE" | debconf-set-selections && \

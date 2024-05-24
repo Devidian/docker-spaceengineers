@@ -12,10 +12,10 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 
 | Key         | :latest              | :winestaging         |
 | ----------- | -------------------- | -------------------- |
-| OS          | Debian 11 (Bullseye) | Debian 11 (Bullseye) |
-| Wine        | 8.0.0.0~bullseye-1   | 8.9~bullseye-1       |
-| Docker size | ~1.73GB compressed   | ~1.77GB compressed   |
-| Build Time  | ~ 7-8 Minutes        |                      |
+| OS          | Debian 12 (Bookworm) | Debian 12 (Bookworm) |
+| Wine        | 9.9~bookworm-1       | 9.9~bookworm-1       |
+| Docker size | ~1.82GB compressed   | ~1.82GB compressed   |
+| Build Time  | ~ 19 Minutes         | ~ 19 Minutes         |
 
 ## How to use
 
@@ -34,11 +34,9 @@ Do not forget to rename `TestInstance` with your instance name!
 ### example composer - just copy and adjust
 
 ```yaml
-version: "3.8"
-
 services:
   se-server:
-    image: devidian/spaceengineers:latest
+    image: devidian/spaceengineers:winestaging
     container_name: se-ds-docker
     restart: unless-stopped
     volumes:
@@ -95,4 +93,4 @@ Sure, feel free to submit merge requests or issues if you have anything to impro
 ## Known issues
 
 - **VRage Remote Client**
-  - I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it)
+  - I personally could not manage to connect with te remote client, if anyone gets a connection please tell me (and maybe how you fixed it) [see here](https://github.com/Devidian/docker-spaceengineers/issues/36)
