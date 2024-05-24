@@ -13,7 +13,7 @@ I wanted to have a more cleaner docker container with less dependencies (integra
 | Key         | :latest              | :winestaging         |
 | ----------- | -------------------- | -------------------- |
 | OS          | Debian 12 (Bookworm) | Debian 12 (Bookworm) |
-| Wine        | 9.9~bookworm-1       | 9.9~bookworm-1       |
+| Wine        | 9.0~bookworm-1       | 9.9~bookworm-1       |
 | Docker size | ~1.82GB compressed   | ~1.82GB compressed   |
 | Build Time  | ~ 19 Minutes         | ~ 19 Minutes         |
 

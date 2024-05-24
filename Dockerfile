@@ -6,7 +6,7 @@ WORKDIR /root
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
 ARG WINEBRANCH=stable
-ARG WINEVERSION=9.9~bookworm-1
+ARG WINEVERSION=9.0.0.0~bookworm-1
 
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
