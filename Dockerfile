@@ -1,4 +1,4 @@
-FROM debian:bookworm-20240513-slim
+FROM debian:bookworm-20241016-slim
 
 WORKDIR /root
 
