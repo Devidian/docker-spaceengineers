@@ -1,4 +1,4 @@
-FROM debian:bookworm-20240513-slim
+FROM debian:bookworm-20241016-slim
 
 WORKDIR /root
 
@@ -6,7 +6,7 @@ WORKDIR /root
 # never env DEBIAN_FRONTEND=noninteractive !!
 ARG DEBIAN_FRONTEND=noninteractive
 ARG WINEBRANCH=staging
-ARG WINEVERSION=9.9~bookworm-1
+ARG WINEVERSION=9.20~bookworm-1
 
 ENV WINEARCH=win64
 ENV WINEDEBUG=-all
