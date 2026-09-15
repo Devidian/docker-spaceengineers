@@ -4,14 +4,19 @@ GAME_DIR="/appdata/space-engineers/SpaceEngineersDedicated"
 INSTANCES_DIR="/appdata/space-engineers/instances"
 PLUGIN_DIR="/appdata/space-engineers/plugins"
 CONFIG_PATH="${INSTANCES_DIR}/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
-INSTANCE_IP=$(hostname -I | sed "s= ==g")
+# Bind address written to <IP> in the server config. Default 0.0.0.0 (listen on
+# all interfaces). Override with SE_BIND_IP if the server must bind one address.
+# The previous value concatenated every address from `hostname -I` (e.g.
+# "192.168.1.4172.17.0.1" on a host with a Docker bridge), which is not a valid
+# IP address.
+INSTANCE_IP="${SE_BIND_IP:-0.0.0.0}"
 
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"
 /usr/games/steamcmd +force_install_dir ${GAME_DIR} +login anonymous +@sSteamCmdForcePlatformType windows +app_update 298740 +quit
 
 echo "---------------------------------UPDATE CONFIG-------------------------------"
-# update IP to host external ip
+# set the bind address (see INSTANCE_IP above)
 CURRENT_IP=$(grep -oEi '<IP>(.*)</IP>' ${CONFIG_PATH} | sed -E "s=<IP>|</IP>==g")
 sed -i "s=<IP>.*</IP>=<IP>${INSTANCE_IP}</IP>=g" ${CONFIG_PATH}
 

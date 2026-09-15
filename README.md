@@ -54,8 +54,9 @@ services:
     environment:
       - WINEDEBUG=-all
       - INSTANCE_NAME=TestInstance
-      - PUBLIC_IP=1.2.3.4
-      # public ip required for healthcheck
+      # Optional: address written to <IP> in the server config. Defaults to
+      # 0.0.0.0 (listen on all interfaces).
+      # - SE_BIND_IP=192.168.1.4
 ```
 
 ## Build the image yourself from source
